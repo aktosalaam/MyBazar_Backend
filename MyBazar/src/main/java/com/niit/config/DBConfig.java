@@ -5,6 +5,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -12,10 +13,14 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.dao.CategoryDAOImpl;
 import com.niit.model.Category;
 import com.niit.model.Product;
 
+
+
 @Configuration
+
 @EnableTransactionManagement
 public class DBConfig 
 {
@@ -40,19 +45,31 @@ public class DBConfig
 	{
 		Properties properties=new Properties();
 		properties.put("hibernate.hbm2ddl.auto","create");
+		properties.put("hibernate.show_sql","true");
 		properties.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		
-		LocalSessionFactoryBuilder sessionFactoryBuilder=new LocalSessionFactoryBuilder(getH2DataSource());
-		sessionFactoryBuilder.addProperties(properties);
+		LocalSessionFactoryBuilder Builder=new LocalSessionFactoryBuilder(getH2DataSource());
+		Builder.addProperties(properties);
 		
-		sessionFactoryBuilder.addAnnotatedClass(Category.class);
-		sessionFactoryBuilder.addAnnotatedClass(Product.class);
+		Builder.addAnnotatedClass(Category.class);
+		Builder.addAnnotatedClass(Product.class);
 		
-		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
+		SessionFactory sessionFactory=Builder.buildSessionFactory();
 		
 		System.out.println("SessionFactory Object Created");
 		
-		return sessionFactory;
+		return Builder.buildSessionFactory();
+	}
+	@Autowired
+	@Bean(name = "supplierDaoImpl")
+	public SupplierDAOImpl getSuppData(SessionFactory sf) {
+		return new SupplierDAOImpl();
+	}
+
+	@Autowired
+	@Bean(name = "categoryDaoImpl")
+	public CategoryDAOImpl getCategoryData(SessionFactory sf) {
+		return new CategoryDAOImpl();
 	}
 	
 	@Bean

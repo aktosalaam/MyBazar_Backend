@@ -1,3 +1,5 @@
-com\niit\test\CategoryDAOTestCase.class
 com\niit\test\ProductDAOTestCase.class
+com\niit\test\CartItemDAOTestCase.class
 com\niit\test\DBConfigTest.class
+com\niit\test\CategoryDAOTestCase.class
+com\niit\test\SupplierDAOTestCase.class

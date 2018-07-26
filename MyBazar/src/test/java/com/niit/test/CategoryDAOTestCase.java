@@ -27,14 +27,14 @@ public class CategoryDAOTestCase
 		categoryDAO=(CategoryDAO)context.getBean("categoryDAO");
 	}
 	
-	@Ignore
+
 	@Test
 	public void addCategoryTest()
 	{
 		Category category=new Category();
 		
-		category.setCategoryName("Lenovo");
-		category.setCategoryDesc("Lenove Mobiles");
+		category.setCategoryName("iphone 5c");
+		category.setCategoryDesc("Apple Mobiles");
 		
 		assertTrue("Problem in Adding Category:",categoryDAO.addCategory(category));
 	}
@@ -55,7 +55,7 @@ public class CategoryDAOTestCase
 		Category category=categoryDAO.getCategory(2);
 		assertTrue("Problem in Deleting the Category",categoryDAO.deleteCategory(category));
 	}
-	
+	@Ignore
 	@Test
 	public void listCategoriesTest()
 	{

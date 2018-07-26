@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.niit.model.Supplier;
 
-
 @Repository("supplierDAO")
 @Service
 
@@ -23,7 +22,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 
 	public SupplierDAOImpl(SessionFactory sf) {
 		super();
-		this.sessionFactory=sf;
+		this.sessionFactory = sf;
 	}
 
 	public boolean addSupplier(Supplier supplier) {
@@ -103,7 +102,6 @@ public class SupplierDAOImpl implements SupplierDAO {
 
 	}
 
-	
-	
+
 
 }

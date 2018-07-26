@@ -4,13 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.model.Supplier;
 import com.niit.dao.SupplierDAO;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import com.niit.model.Supplier;
 
 public class SupplierDAOTestCase {
 
@@ -25,8 +22,8 @@ public class SupplierDAOTestCase {
 		context.refresh();
 		supplierDao = (SupplierDAO) context.getBean("supplierDAO");
 	}
-
-	@Ignore
+//
+	//@Ignore
 	@Test
 	public void testAddSupplier() {
 		Supplier supplier = new Supplier();
@@ -34,7 +31,7 @@ public class SupplierDAOTestCase {
 		supplier.setSupplierName("Akash");
 		assertEquals("Successfully added a supplier details into the table", true, supplierDao.addSupplier(supplier));
 	}
-
+/*
 	@Test
 	public void testGetSupplier() {
 		Supplier supplier = new Supplier();
@@ -66,5 +63,5 @@ public class SupplierDAOTestCase {
 		supplier = supplierDao.getSupplier(1);
 		
 		assertEquals("Successfully fetched all supplier details from the table", 3, supplierDao.getSupplier(supplier.getSupplierId()));
-	}
+	}*/
 }
